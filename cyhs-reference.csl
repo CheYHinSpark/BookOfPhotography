@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en">
+  <info>
+    <title>CYHS Numeric Reference Style</title>
+    <id>https://example.com/cyhs-reference</id>
+    <link href="https://example.com/cyhs-reference" rel="self"/>
+    <author>
+      <name>CheYHinSpark</name>
+    </author>
+    <category citation-format="numeric"/>
+    <updated>2026-06-05T00:00:00+00:00</updated>
+  </info>
+
+  <macro name="author">
+    <names variable="author">
+      <name form="long" and="text" delimiter=", "/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="container">
+    <choose>
+      <if variable="container-title">
+        <group delimiter=", ">
+          <text variable="container-title" font-style="italic"/>
+          <text variable="volume" prefix="vol. "/>
+          <text variable="issue" prefix="no. "/>
+          <text variable="page" prefix="pp. "/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="online">
+    <group delimiter=", ">
+      <choose>
+        <if variable="DOI">
+          <text variable="DOI" prefix="DOI: "/>
+        </if>
+      </choose>
+      <choose>
+        <if variable="URL">
+          <text variable="URL" prefix="URL: "/>
+        </if>
+      </choose>
+    </group>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography second-field-align="flush" entry-spacing="0" line-spacing="1">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="]"/>
+      <group delimiter=". ">
+        <text macro="author"/>
+        <text macro="title"/>
+        <text macro="container"/>
+        <text macro="year"/>
+        <text macro="online"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>

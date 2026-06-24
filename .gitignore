@@ -1,0 +1,5 @@
+*.ps1
+book.pdf
+/tmp
+/output
+__pycache__
