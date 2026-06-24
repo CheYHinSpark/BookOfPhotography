@@ -45,7 +45,7 @@
   #text(size: 9pt, fill: luma(80))[Presented in collaboration with ChatGPT · 2026]
 ]
 
-#make-outline(indent: 2em)
+#make-outline(depth: 2, indent: 2em)
 
 #include "chapters/01-introduction.typ"
 #include "chapters/02-light-models.typ"

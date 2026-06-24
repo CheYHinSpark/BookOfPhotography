@@ -52,14 +52,14 @@
 #let paragraph-leading = 10pt
 #let paragraph-spacing = 14pt
 
-// A compact, unnumbered subheading for paragraph-scale topics. It mirrors
-// the visual weight of a level-3 heading without entering the outline.
+// A compact, unnumbered label for paragraph-scale topics. Keep it visually
+// subordinate to a level-3 heading and outside the document hierarchy.
 #let paragraph-heading(body) = block(
-  above: 14pt,
-  below: 12pt,
+  above: 12pt,
+  below: 10pt,
   sticky: true,
 )[
-  #text(font: strong-fonts, size: 12pt, weight: "bold")[#body]
+  #text(font: strong-fonts, size: font-size, weight: "bold")[#body]
 ]
 
 // Reference entry layout lives in CSL; Typst controls the wrapper around it.
@@ -467,6 +467,7 @@
 
 #let make-outline(
   title: auto,
+  depth: none,
   indent: auto,
   breakpage: true,
 ) = context {
@@ -474,7 +475,7 @@
   let resolved-title = if title == auto { loc.outline-title } else { title }
 
   if breakpage {pagebreak()}
-  outline(title: resolved-title, indent: indent)
+  outline(title: resolved-title, depth: depth, indent: indent)
   if breakpage {pagebreak()}
 }
 
