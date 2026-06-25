@@ -32,7 +32,7 @@
   body,
   label-y,
   paint: rgb("#334e68"),
-  size: 21,
+  size: 22,
 ) = {
   let segment = draw.segment
   let label = draw.label
@@ -123,7 +123,7 @@
   ]
 }, width: width, fill: rgb("#fbfdff"))
 
-#let thin-lens-imaging(width: 100%) = diagram-canvas(1300, 660, draw => {
+#let thin-lens-imaging(width: 100%) = diagram-canvas(1200, 570, draw => {
   let dark = rgb("#334e68")
   let muted = rgb("#627d98")
   let blue = rgb("#3b82b5")
@@ -135,39 +135,39 @@
   let draw-arrow = draw.arrow
   let label = draw.label
 
-  let axis-y = 330
-  let lens-x = 650
+  let axis-y = 280
+  let lens-x = 600
   let object-x = 300
-  let image-x = 945
+  let image-x = 900
   let object-top = 140
-  let image-tip = 490
-  let focal-length = 160
+  let image-tip = 420
+  let focal-length = 150
 
   [
-    #draw-arrow(80, axis-y, 1215, axis-y, paint: rgb("#829ab1"), thickness: 2, head: 15, wing: 6)
-    #label(1180, 304, [光轴 $z$], width: 130, size: 20, fill: muted)
+    #draw-arrow(100, axis-y, 1100, axis-y, paint: rgb("#829ab1"), thickness: 2, head: 15, wing: 6)
+    #label(1080, 260, [光轴 $z$], width: 100, size: 22, fill: muted)
 
     #lens-shape(
       draw,
       lens-x,
-      70,
-      590,
-      62,
+      80,
+      480,
+      50,
       rgb("#eaf4ff"),
       rgb("#5595c5"),
     )
-    #segment(lens-x, 75, lens-x, 585, paint: blue, thickness: 2, dashed: true, dash: (8, 7))
-    #label(lens-x, 628, [薄透镜平面], width: 200, size: 20, fill: rgb("#2f6f9f"), weight: 600)
+    #segment(lens-x, 60, lens-x, 500, paint: blue, thickness: 2, dashed: true, dash: (8, 7))
+    #label(lens-x, 540, [薄透镜平面], width: 200, size: 22, fill: rgb("#2f6f9f"), weight: 600)
 
     #segment(lens-x - focal-length, axis-y - 10, lens-x - focal-length, axis-y + 10, paint: dark, thickness: 3)
     #segment(lens-x + focal-length, axis-y - 10, lens-x + focal-length, axis-y + 10, paint: dark, thickness: 3)
-    #label(lens-x - focal-length, axis-y + 35, [$F$], width: 60, size: 22, fill: dark, weight: 700)
-    #label(lens-x + focal-length, axis-y + 35, [$F'$], width: 60, size: 22, fill: dark, weight: 700)
+    #label(lens-x - focal-length, axis-y + 35, [$F$], width: 60, size: 22, fill: dark, weight: 600)
+    #label(lens-x + focal-length, axis-y + 35, [$F'$], width: 60, size: 22, fill: dark, weight: 600)
 
     #draw-arrow(object-x, axis-y, object-x, object-top, paint: blue-dark, thickness: 5, head: 17, wing: 8)
-    #label(275, 112, [物体 $y_o$], width: 150, size: 22, fill: blue-dark, weight: 700)
+    #label(280, 110, [物体 $y_o$], width: 150, size: 22, fill: blue-dark, weight: 700)
     #draw-arrow(image-x, axis-y, image-x, image-tip, paint: rose-dark, thickness: 5, head: 17, wing: 8)
-    #label(1010, 520, [倒立实像 $y_i$], width: 210, size: 22, fill: rose-dark, weight: 700)
+    #label(920, 450, [倒立实像 $y_i$], width: 210, size: 22, fill: rose-dark, weight: 700)
 
     #segment(object-x, object-top, lens-x, object-top, paint: blue, thickness: 3)
     #segment(lens-x, object-top, image-x, image-tip, paint: blue, thickness: 3)
@@ -175,14 +175,14 @@
     #segment(object-x, object-top, lens-x, image-tip, paint: rgb("#c58a2d"), thickness: 3)
     #segment(lens-x, image-tip, image-x, image-tip, paint: rgb("#c58a2d"), thickness: 3)
 
-    #horizontal-dimension(draw, object-x, lens-x, 590, [$s = -z_o$], 625, paint: dark)
-    #horizontal-dimension(draw, lens-x, image-x, 590, [$s' = z_i$], 625, paint: dark)
+    #horizontal-dimension(draw, object-x, lens-x, 510, [$s = -z_o$], 530, paint: dark)
+    #horizontal-dimension(draw, lens-x, image-x, 510, [$s' = z_i$], 530, paint: dark)
 
-    #label(650, 30, [$1/z_i - 1/z_o = 1/f$], width: 420, height: 42, size: 23, fill: rgb("#7b3651"), weight: 600)
+    #label(600, 30, [$1/z_i - 1/z_o = 1/f$], width: 400, height: 40, size: 28, fill: rgb("#7b3651"), weight: 600)
   ]
 }, width: width, fill: rgb("#fbfdff"))
 
-#let aperture-pupils(width: 100%) = diagram-canvas(1350, 600, draw => {
+#let aperture-pupils(width: 100%) = diagram-canvas(1350, 680, draw => {
   let dark = rgb("#334e68")
   let muted = rgb("#627d98")
   let blue = rgb("#3b82b5")
@@ -199,6 +199,8 @@
 
   [
     #draw-arrow(70, axis-y, 1280, axis-y, paint: rgb("#9fb3c2"), thickness: 2, head: 15, wing: 6)
+    #label(105, axis-y - 30, [物方], width: 90, size: 19, fill: muted, weight: 600)
+    #label(1245, axis-y - 30, [像方], width: 90, size: 19, fill: muted, weight: 600)
 
     #lens-shape(
       draw,
@@ -222,28 +224,45 @@
     )
     #label(860, 535, [后透镜组], width: 170, size: 21, fill: rgb("#8d6bb4"), weight: 700)
 
-    #segment(650, 65, 650, 210, paint: dark, thickness: 8)
-    #segment(650, 370, 650, 515, paint: dark, thickness: 8)
+    #segment(650, 70, 650, 190, paint: dark, thickness: 8)
+    #segment(650, 390, 650, 510, paint: dark, thickness: 8)
     #label(650, 48, [孔径光阑], width: 180, size: 22, fill: dark, weight: 700)
-    #label(650, 325, [机械开口], width: 150, size: 18, fill: muted)
+    #label(650, 325, [真实机械开口], width: 180, size: 18, fill: muted)
 
-    #ellipse-at(505, axis-y, 18, 110, stroke: blue-dark, thickness: 4, dashed: true, dash: (12, 8))
-    #label(505, 145, [入瞳], width: 100, size: 23, fill: blue-dark, weight: 700)
-    #ellipse-at(1030, axis-y, 18, 110, stroke: rose-dark, thickness: 4, dashed: true, dash: (12, 8))
-    #label(1030, 145, [出瞳], width: 100, size: 23, fill: rose-dark, weight: 700)
+    #ellipse-at(480, axis-y, 22, 118, stroke: blue-dark, thickness: 4, dashed: true, dash: (12, 8))
+    #label(480, 122, [入瞳], width: 120, size: 24, fill: blue-dark, weight: 700)
+    #label(480, 154, [物方看到的光阑像], width: 280, size: 18, fill: blue-dark, weight: 600)
 
-    #label(120, 205, [物方观察], width: 160, size: 21, fill: blue-dark, weight: 600)
-    #draw-arrow(135, 225, 475, 195, paint: blue, thickness: 3, head: 15, wing: 6)
-    #segment(135, 355, 475, 385, paint: blue, thickness: 3)
+    #ellipse-at(1025, axis-y, 24, 138, stroke: rose-dark, thickness: 4, dashed: true, dash: (12, 8))
+    #label(1025, 112, [出瞳], width: 120, size: 24, fill: rose-dark, weight: 700)
+    #label(1025, 144, [像方看到的光阑像], width: 280, size: 18, fill: rose-dark, weight: 600)
 
-    #label(1200, 205, [像方观察], width: 160, size: 21, fill: rose-dark, weight: 600)
-    #draw-arrow(1200, 225, 1060, 195, paint: rose, thickness: 3, head: 15, wing: 6)
-    #segment(1200, 355, 1060, 385, paint: rose, thickness: 3)
+    #segment(430, axis-y - 118, 430, axis-y + 118, paint: blue-dark, thickness: 2)
+    #segment(420, axis-y - 118, 440, axis-y - 118, paint: blue-dark, thickness: 2)
+    #segment(420, axis-y + 118, 440, axis-y + 118, paint: blue-dark, thickness: 2)
+    #label(405, axis-y, [$D_("en")$], width: 85, size: 20, fill: blue-dark, weight: 600)
+
+    #segment(1070, axis-y - 138, 1070, axis-y + 138, paint: rose-dark, thickness: 2)
+    #segment(1060, axis-y - 138, 1080, axis-y - 138, paint: rose-dark, thickness: 2)
+    #segment(1060, axis-y + 138, 1080, axis-y + 138, paint: rose-dark, thickness: 2)
+    #label(1100, axis-y, [$D_("ex")$], width: 85, size: 20, fill: rose-dark, weight: 600)
+
+    #label(120, 200, [从物方看进去], width: 190, size: 20, fill: blue-dark, weight: 600)
+    #draw-arrow(130, 225, 454, axis-y - 118, paint: blue, thickness: 3, head: 14, wing: 6)
+    #segment(130, 355, 454, axis-y + 118, paint: blue, thickness: 3)
+    #segment(506, axis-y - 118, 650, 190, paint: blue, thickness: 2, dashed: true, dash: (8, 6))
+    #segment(506, axis-y + 118, 650, 390, paint: blue, thickness: 2, dashed: true, dash: (8, 6))
+
+    #label(1220, 200, [从像方看回来], width: 210, size: 20, fill: rose-dark, weight: 600)
+    #draw-arrow(1210, 225, 1052, axis-y - 138, paint: rose, thickness: 3, head: 14, wing: 6)
+    #segment(1210, 355, 1052, axis-y + 138, paint: rose, thickness: 3)
+    #segment(998, axis-y - 138, 650, 190, paint: rose, thickness: 2, dashed: true, dash: (8, 6))
+    #segment(998, axis-y + 138, 650, 390, paint: rose, thickness: 2, dashed: true, dash: (8, 6))
 
     #label(
       675,
-      570,
-      [虚线椭圆表示瞳的位置与表观尺寸，并非额外的物理光圈],
+      600,
+      [虚线椭圆是同一个孔径光阑经前后镜组形成的像，位置和直径可与机械开口不同],
       width: 900,
       size: 19,
       fill: muted,

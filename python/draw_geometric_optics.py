@@ -178,36 +178,53 @@ def thin_lens_imaging():
 
 
 def aperture_pupils():
-    width, height = 1350, 650
+    width, height = 1350, 680
     svg = base_svg(width, height, "孔径光阑与入瞳出瞳")
-    text(svg, width / 2, 45, "同一个物理光阑，经前后镜组形成两个瞳像", size=30, weight="700", fill="#102a43")
-    axis_y = 330
+    axis_y = 290
     line(svg, 70, axis_y, 1280, axis_y, stroke="#9fb3c2", width=2, marker="arrow-dark")
+    text(svg, 105, axis_y - 30, "物方", size=19, weight="600", fill="#627d98")
+    text(svg, 1245, axis_y - 30, "像方", size=19, weight="600", fill="#627d98")
 
     # Optical groups.
     for x, label, color in ((360, "前透镜组", "#5a9bcc"), (860, "后透镜组", "#8d6bb4")):
-        SubElement(svg, "path", {"d": f"M {x} 125 C {x-45} 190 {x-45} 470 {x} 535 C {x+45} 470 {x+45} 190 {x} 125 Z", "fill": "#eef6fb" if x < 600 else "#f5effb", "stroke": color, "stroke-width": "3"})
-        text(svg, x, 575, label, size=21, weight="700", fill=color)
+        SubElement(svg, "path", {"d": f"M {x} 85 C {x-45} 155 {x-45} 425 {x} 495 C {x+45} 425 {x+45} 155 {x} 85 Z", "fill": "#eef6fb" if x < 600 else "#f5effb", "stroke": color, "stroke-width": "3"})
+        text(svg, x, 535, label, size=21, weight="700", fill=color)
 
     stop_x = 650
-    line(svg, stop_x, 105, stop_x, 250, stroke="#334e68", width=8)
-    line(svg, stop_x, 410, stop_x, 555, stroke="#334e68", width=8)
-    text(svg, stop_x, 92, "孔径光阑", size=22, weight="700")
-    text(svg, stop_x, 365, "机械开口", size=18, fill="#627d98")
+    line(svg, stop_x, 70, stop_x, 190, stroke="#334e68", width=8)
+    line(svg, stop_x, 390, stop_x, 510, stroke="#334e68", width=8)
+    text(svg, stop_x, 48, "孔径光阑", size=22, weight="700")
+    text(svg, stop_x, 325, "真实机械开口", size=18, fill="#627d98")
 
     # Virtual pupil images.
-    for x, label, color in ((505, "入瞳", "#2f7ba8"), (1030, "出瞳", "#a24862")):
-        SubElement(svg, "ellipse", {"cx": str(x), "cy": str(axis_y), "rx": "18", "ry": "115", "fill": "none", "stroke": color, "stroke-width": "4", "stroke-dasharray": "12 8"})
-        text(svg, x, 190, label, size=23, weight="700", fill=color)
+    SubElement(svg, "ellipse", {"cx": "480", "cy": str(axis_y), "rx": "22", "ry": "118", "fill": "none", "stroke": "#2f7ba8", "stroke-width": "4", "stroke-dasharray": "12 8"})
+    text(svg, 480, 122, "入瞳", size=24, weight="700", fill="#2f7ba8")
+    text(svg, 480, 154, "物方看到的光阑像", size=18, weight="600", fill="#2f7ba8")
+    SubElement(svg, "ellipse", {"cx": "1025", "cy": str(axis_y), "rx": "24", "ry": "138", "fill": "none", "stroke": "#a24862", "stroke-width": "4", "stroke-dasharray": "12 8"})
+    text(svg, 1025, 112, "出瞳", size=24, weight="700", fill="#a24862")
+    text(svg, 1025, 144, "像方看到的光阑像", size=18, weight="600", fill="#a24862")
 
-    text(svg, 120, 245, "物方观察", size=21, weight="600", fill="#2f7ba8")
-    line(svg, 135, 265, 475, 235, stroke="#3b82b5", width=3, marker="arrow-blue")
-    line(svg, 135, 395, 475, 425, stroke="#3b82b5", width=3)
-    text(svg, 1200, 245, "像方观察", size=21, weight="600", fill="#a24862")
-    line(svg, 1200, 265, 1060, 235, stroke="#c85b73", width=3, marker="arrow-red")
-    line(svg, 1200, 395, 1060, 425, stroke="#c85b73", width=3)
+    line(svg, 430, axis_y - 118, 430, axis_y + 118, stroke="#2f7ba8", width=2)
+    line(svg, 420, axis_y - 118, 440, axis_y - 118, stroke="#2f7ba8", width=2)
+    line(svg, 420, axis_y + 118, 440, axis_y + 118, stroke="#2f7ba8", width=2)
+    text(svg, 405, axis_y + 5, "Dₑₙ", size=20, weight="600", fill="#2f7ba8")
+    line(svg, 1070, axis_y - 138, 1070, axis_y + 138, stroke="#a24862", width=2)
+    line(svg, 1060, axis_y - 138, 1080, axis_y - 138, stroke="#a24862", width=2)
+    line(svg, 1060, axis_y + 138, 1080, axis_y + 138, stroke="#a24862", width=2)
+    text(svg, 1100, axis_y + 5, "Dₑₓ", size=20, weight="600", fill="#a24862")
 
-    text(svg, 680, 610, "虚线椭圆表示瞳的位置与表观尺寸，并非额外的物理光圈", size=19, fill="#627d98")
+    text(svg, 120, 200, "从物方看进去", size=20, weight="600", fill="#2f7ba8")
+    line(svg, 130, 225, 454, axis_y - 118, stroke="#3b82b5", width=3, marker="arrow-blue")
+    line(svg, 130, 355, 454, axis_y + 118, stroke="#3b82b5", width=3)
+    line(svg, 506, axis_y - 118, stop_x, 190, stroke="#3b82b5", width=2, dash="8 6")
+    line(svg, 506, axis_y + 118, stop_x, 390, stroke="#3b82b5", width=2, dash="8 6")
+    text(svg, 1220, 200, "从像方看回来", size=20, weight="600", fill="#a24862")
+    line(svg, 1210, 225, 1052, axis_y - 138, stroke="#c85b73", width=3, marker="arrow-red")
+    line(svg, 1210, 355, 1052, axis_y + 138, stroke="#c85b73", width=3)
+    line(svg, 998, axis_y - 138, stop_x, 190, stroke="#c85b73", width=2, dash="8 6")
+    line(svg, 998, axis_y + 138, stop_x, 390, stroke="#c85b73", width=2, dash="8 6")
+
+    text(svg, 675, 600, "虚线椭圆是同一个孔径光阑经前后镜组形成的像，位置和直径可与机械开口不同", size=19, fill="#627d98")
 
     ElementTree(svg).write(SVG_DIR / "aperture_pupils.svg", encoding="utf-8", xml_declaration=True)
 
