@@ -52,7 +52,7 @@ $ <eq:paraxial-expansion>
     columns: (0.8fr, 1.2fr, 1.2fr, 1.35fr),
     align: (center, center, center, left),
     [*$theta$*], [$(theta-sin theta)/theta$], [$(tan theta-theta)/theta$], [*近似状态*],
-    [$5 degree$], [$0.127%$], [$0.255%$], [一阶近似很紧],
+    [$5 degree$], [$0.127%$], [$0.255%$], [一阶近似很接近],
     [$10 degree$], [$0.507%$], [$1.028%$], [误差已经可测],
     [$20 degree$], [$2.018%$], [$4.270%$], [高阶项不可忽略],
   ),
